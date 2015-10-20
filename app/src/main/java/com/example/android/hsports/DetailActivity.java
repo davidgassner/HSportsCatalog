@@ -1,5 +1,8 @@
 package com.example.android.hsports;
 
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.NumberFormat;
 
 public class DetailActivity extends AppCompatActivity {
@@ -17,18 +22,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String productId = getIntent().getStringExtra(MainActivity.EXTRA_ID);
         setTitle(getString(R.string.app_name));
@@ -55,10 +48,18 @@ public class DetailActivity extends AppCompatActivity {
         TextView descText = (TextView) findViewById(R.id.descriptionText);
         descText.setText(product.getDescription());
 
-        int imageResource = getResources().getIdentifier(
-                product.getProductId(), "drawable", getPackageName());
+        String imageFile = product.getProductId() + ".png";
+        AssetManager assetManager = getAssets();
+        InputStream stream = null;
+        try {
+            stream = assetManager.open(imageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+
         ImageView iv = (ImageView) findViewById(R.id.imageView);
-        iv.setImageResource(imageResource);
+        iv.setImageBitmap(bitmap);
 
     }
 
