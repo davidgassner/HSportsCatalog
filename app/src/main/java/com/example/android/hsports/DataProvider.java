@@ -9,15 +9,6 @@ public final class DataProvider {
 
     public static List<ClothingItem> itemList = new ArrayList<>();
     public static Map<String, ClothingItem> itemMap = new HashMap<>();
-    public static String[] itemNames = getItemsArray();
-
-    private static String[] getItemsArray() {
-        String[] itemsArray = new String[itemList.size()];
-        for (int i=0; i<itemList.size(); i++) {
-            itemsArray[i] = itemList.get(i).getName();
-        }
-        return itemsArray;
-    }
 
     static {
 
@@ -94,6 +85,14 @@ public final class DataProvider {
         ClothingItem item = new ClothingItem(itemId, name, description, price);
         itemList.add(item);
         itemMap.put(itemId, item);
+    }
+
+    public static List<String> getItemNames() {
+        List<String> list = new ArrayList<>();
+        for (ClothingItem item : itemList) {
+            list.add(item.getName());
+        }
+        return list;
     }
 
 }
