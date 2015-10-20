@@ -16,7 +16,7 @@ public class ClothingItem {
     }
 
     public String getDescription() {
-        return description;
+        return description + "\n";
     }
 
     public double getPrice() {
