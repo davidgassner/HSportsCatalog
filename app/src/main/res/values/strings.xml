@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">H+ Sports</string>
+    <string name="app_name">H+ Sport</string>
     <string name="action_settings">Settings</string>
-    <string name="main_activity_title">H+ Sports Clothing Catalog</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="main_activity_title">H+ Sport Clothing Catalog</string>
+    <string name="title_activity_detail">H+ Sport</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="title_activity_about">About H+ Sport</string>
+    <string name="mission_statement_content">We support and encourage active and healthy lifestyles, by offering ethically-sourced and eco-friendly nutritional products and active wear for the performance-driven athlete.</string>
+    <string name="mission_statement_label">Mission Statement</string>
+    <string name="history_label">Company History</string>
+    <string name="history_content">In 2006, H+ Sport founder Henry Twill set out to create supplements and nutritional products made from the purest ingredients and backed by scientific and performance data – to provide a strong basis of trust and accountability. His quest began while training for his first 5K marathon, after recovering from a lengthy injury that left him with residual aches, pains, and decreased athletic performance. He was disheartened by the vast array of supplements and nutritional products on the market that subsisted of lofty claims, and little proof of those claims. He yearned for simple and natural ingredients, in their purest form, instead of labels with lengthy chemical names and disclaimers. He also cared immensely for the environment, and wanted to find products that were responsibly sourced. When no products lived up to his strict requirements, Henry set his sights on creating products that catered to his own vision. Today that vision has become H+ Sport…offering a variety of supplements, energy bars, rehydration solutions, and active wear that complement active lifestyles. At the foundation of H+ Sports are products backed by scientific and performance data, that have been created using natural and renewable resources. H+ Sport is dedicated to creating eco-friendly, high-quality, nutrient-rich, nutritional products that enhance active lifestyles. In addition, our H+ Sport Active clothing line is made to be functional, stylish, comfortable, and durable, using all natural and organic fibers.</string>
+    <string name="action_about">About</string>
 </resources>
