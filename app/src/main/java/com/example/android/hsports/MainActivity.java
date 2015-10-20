@@ -24,15 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
 //        List<ClothingItem> itemList = DataProvider.itemList;
         Map<String, ClothingItem> itemMap = DataProvider.itemMap;
-        Set<String> keySet = itemMap.keySet();
-        String[] keys = keySet.toArray(new String[keySet.size()]);
 
         ListView lv = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(this,
                         android.R.layout.simple_list_item_1,
-                        android.R.id.text1, keys);
+                        android.R.id.text1, DataProvider.itemNames);
 
         lv.setAdapter(adapter);
 
