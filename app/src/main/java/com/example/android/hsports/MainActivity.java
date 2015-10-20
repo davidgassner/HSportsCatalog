@@ -10,9 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_ID = "extra_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.main_activity_title));
 
-        final List<ClothingItem> itemList = DataProvider.itemList;
-        Map<String, ClothingItem> itemMap = DataProvider.itemMap;
+        final List<Product> productList = DataProvider.productList;
 
         ListView lv = (ListView) findViewById(R.id.listView);
 
-//        ArrayAdapter<String> adapter =
-//                new ArrayAdapter<>(this,
-//                        android.R.layout.simple_list_item_1,
-//                        android.R.id.text1, DataProvider.getItemNames());
-        ArrayAdapter<ClothingItem> adapter =
-                new ListItemAdapter(this, R.layout.list_item, itemList);
+        ArrayAdapter<Product> adapter =
+                new ProductListAdapter(this, R.layout.list_item, productList);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,15 +36,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
 
-                ClothingItem item = itemList.get(position);
-                intent.putExtra("itemId", item.getItemId());
+                Product item = productList.get(position);
+                intent.putExtra(EXTRA_ID, item.getProductId());
                 startActivity(intent);
             }
         });
 
-
-//        String msg = "List items: " + itemList.size() + ", map items: " + itemMap.size();
-//        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

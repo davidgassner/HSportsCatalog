@@ -30,33 +30,33 @@ public class DetailActivity extends AppCompatActivity {
 
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String itemId = getIntent().getStringExtra("itemId");
+        String productId = getIntent().getStringExtra(MainActivity.EXTRA_ID);
         setTitle(getString(R.string.app_name));
-        ClothingItem item = DataProvider.itemMap.get(itemId);
+        Product product = DataProvider.productMap.get(productId);
 
-        if (item == null) {
-            Toast.makeText(this, "Product id not found: " + itemId,
+        if (product == null) {
+            Toast.makeText(this, "Product id not found: " + productId,
                     Toast.LENGTH_SHORT).show();
         } else {
-            displayItemDetails(item);
+            displayDetails(product);
         }
 
     }
 
-    private void displayItemDetails(ClothingItem item) {
+    private void displayDetails(Product product) {
         TextView nameText = (TextView) findViewById(R.id.nameText);
-        nameText.setText(item.getName());
+        nameText.setText(product.getName());
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        String price = formatter.format(item.getPrice());
+        String price = formatter.format(product.getPrice());
         TextView priceText = (TextView) findViewById(R.id.priceText);
         priceText.setText(price);
 
         TextView descText = (TextView) findViewById(R.id.descriptionText);
-        descText.setText(item.getDescription() + "\n");
+        descText.setText(product.getDescription());
 
         int imageResource = getResources().getIdentifier(
-                item.getItemId(), "drawable", getPackageName());
+                product.getProductId(), "drawable", getPackageName());
         ImageView iv = (ImageView) findViewById(R.id.imageView);
         iv.setImageResource(imageResource);
 

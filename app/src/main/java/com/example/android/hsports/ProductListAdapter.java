@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ListItemAdapter extends ArrayAdapter<ClothingItem> {
+public class ProductListAdapter extends ArrayAdapter<Product> {
 
-    private List<ClothingItem> items;
+    private List<Product> products;
 
     Map<String, Bitmap> bitmaps = new HashMap<>();
 
-    public ListItemAdapter(Context context, int resource, List<ClothingItem> objects) {
+    public ProductListAdapter(Context context, int resource, List<Product> objects) {
         super(context, resource, objects);
-        items = objects;
+        products = objects;
     }
 
     @Override
@@ -37,46 +38,39 @@ public class ListItemAdapter extends ArrayAdapter<ClothingItem> {
                     inflate(R.layout.list_item, parent, false);
         }
 
-        ClothingItem item = items.get(position);
+        Product product = products.get(position);
 
         TextView nameText = (TextView) convertView.findViewById(R.id.nameText);
-        nameText.setText(item.getName());
+        nameText.setText(product.getName());
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        String price = formatter.format(item.getPrice());
+        String price = formatter.format(product.getPrice());
         TextView priceText = (TextView) convertView.findViewById(R.id.priceText);
         priceText.setText(price);
 
-//        int imageResource = getContext().getResources().getIdentifier(
-//                item.getItemId(), "drawable", getContext().getPackageName());
-
-//        Log.d("ListItemAdapter", item.getItemId() + ": " + imageResource);
-
         ImageView iv = (ImageView) convertView.findViewById(R.id.imageView);
-//        iv.setImageResource(imageResource);
-
-        Bitmap bitmap = getBitmapFromAsset(item.getItemId());
+        Bitmap bitmap = getBitmapFromAsset(product.getProductId());
         iv.setImageBitmap(bitmap);
-
 
         return convertView;
     }
 
-    private Bitmap getBitmapFromAsset(String itemId) {
-        if (bitmaps.containsKey(itemId)) {
-            return bitmaps.get(itemId);
+    private Bitmap getBitmapFromAsset(String productId) {
+        if (bitmaps.containsKey(productId)) {
+            return bitmaps.get(productId);
         }
 
+        Log.d(this.getClass().getSimpleName(), "Getting asset for " + productId);
         AssetManager assetManager = getContext().getAssets();
-        InputStream istr = null;
+        InputStream stream = null;
         try {
-            istr = assetManager.open(itemId + ".png");
+            stream = assetManager.open(productId + ".png");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Bitmap bitmap = BitmapFactory.decodeStream(istr);
+        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+        bitmaps.put(productId, bitmap);
 
-        bitmaps.put(itemId, bitmap);
         return bitmap;
     }
 
