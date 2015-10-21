@@ -16,7 +16,7 @@ public class AboutActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
 
     }

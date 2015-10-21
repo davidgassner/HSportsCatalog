@@ -61,10 +61,27 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_about:
                 showAboutActivity();
                 return true;
+            case R.id.action_shirts:
+                filterList("shirt");
+                return true;
+            case R.id.action_pants:
+                filterList("pants");
+                return true;
+            case R.id.action_show_all:
+                filterList("");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void filterList(String searchString) {
+        List<Product> filteredList = DataProvider.getFilteredList(searchString);
+        ArrayAdapter<Product> adapter =
+                new ProductListAdapter(this, R.layout.list_item, filteredList);
+        ListView lv = (ListView) findViewById(R.id.listView);
+        lv.setAdapter(adapter);
     }
 
     private void showAboutActivity() {

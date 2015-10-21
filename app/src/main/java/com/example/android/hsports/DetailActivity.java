@@ -1,6 +1,5 @@
 package com.example.android.hsports;
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -25,19 +24,13 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         String productId = getIntent().getStringExtra(MainActivity.EXTRA_ID);
-        setTitle(getString(R.string.app_name));
         Product product = DataProvider.productMap.get(productId);
-
-        if (product == null) {
-            Toast.makeText(this, "Product id not found: " + productId,
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            displayDetails(product);
-        }
+        setTitle(getString(R.string.app_name) + " " + product.getName());
+        displayDetails(product);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
 
     }
@@ -55,10 +48,10 @@ public class DetailActivity extends AppCompatActivity {
         descText.setText(product.getDescription());
 
         String imageFile = product.getProductId() + ".png";
-        AssetManager assetManager = getAssets();
+//        AssetManager assetManager = getAssets();
         InputStream stream = null;
         try {
-            stream = assetManager.open(imageFile);
+            stream = getAssets().open(imageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

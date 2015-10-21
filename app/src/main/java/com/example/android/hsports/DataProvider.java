@@ -85,12 +85,25 @@ public final class DataProvider {
         productMap.put(itemId, item);
     }
 
-    public static List<String> getItemNames() {
+    public static List<String> getProductNames() {
         List<String> list = new ArrayList<>();
-        for (Product item : productList) {
-            list.add(item.getName());
+        for (Product product : productList) {
+            list.add(product.getName());
         }
         return list;
+    }
+
+    public static List<Product> getFilteredList(String searchString) {
+
+        List<Product> filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getProductId().contains(searchString)) {
+                filteredList.add(product);
+            }
+        }
+
+        return filteredList;
+
     }
 
 }
